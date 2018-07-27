@@ -12,6 +12,9 @@ import com.getpebble.android.kit.util.PebbleDictionary;
 import java.util.Date;
 import java.util.TimeZone;
 
+import static com.eveningoutpost.dexdrip.wearintegration.ExternalStatusService.getIOB;
+import static com.eveningoutpost.dexdrip.wearintegration.ExternalStatusService.getTBR;
+
 /**
  * Created by THE NIGHTSCOUT PROJECT CONTRIBUTORS (and adapted to fit the needs of this project)
  * <p/>
@@ -53,6 +56,8 @@ public class PebbleDisplayStandard extends PebbleDisplayAbstract {
         final String bgDelta = getBgDelta();
         final String bgReadingS = getBgReading();
         final String slopeOrdinal = getSlopeOrdinal();
+        final String insulinOnBoard = getIOB();
+        final String tempBasalRate = getTBR();
         //boolean no_signal;
 
         if (use_best_glucose) {
@@ -78,6 +83,8 @@ public class PebbleDisplayStandard extends PebbleDisplayAbstract {
 
         dictionary.addUint32(PHONE_TIME_KEY, (int) ((new Date().getTime() + offsetFromUTC) / 1000));
         dictionary.addString(BG_DELTA_KEY, bgDelta);
+        dictionary.addString(IOB_KEY, insulinOnBoard);
+        dictionary.addString(TBR_KEY, tempBasalRate);
 
         addBatteryStatusToDictionary(dictionary);
 
